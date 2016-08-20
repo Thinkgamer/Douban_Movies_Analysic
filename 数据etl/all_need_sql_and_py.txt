@@ -1,0 +1,92 @@
+#创建category数据表
+create table movie_category(
+	cate_name string,
+	cate_count int
+)
+comment "this table about movie category"
+row format delimited fields terminated by ",";
+#将category.csv加载到表中
+load data inpath "/file/douabn_movie_data/category.csv" into table movie_category;
+
+#创建movie_links数据表
+#首先提取id
+movies_links.py
+#-*-codinf:utf-8-*-
+
+fp_w = open("new_movies_links.csv","a")
+
+with open("movies_links.csv" ,"r") as fp:
+    links = fp.readlines()
+    for link in links:
+        id = link.strip().split("/")[-2]
+        href = link
+        fp_w.write(id+"," +href)
+
+fp_w.close()
+print "ETL OK" 
+#创建表movie_links
+create table movie_links(
+id int,
+href string
+)
+comment "this table about every movie links"
+row format delimited fields terminated by ",";
+#从本地加载数据
+load data local inpath "/home/master/mycode/new_movies_links.csv" into table movie_links;
+
+#movie.csv
+#ETL
+# -*-coding:utf-8-*-
+
+#encoding="utf-8"  保证导入hive之后查询时不会出现中文乱码
+fp_w = open("new_movies_load.csv","a",encoding="utf-8")
+
+with open("movie.csv","r") as fp_r:
+    for line in fp_r.readlines():
+        movies=line.strip().split(",")
+
+        s = ""
+        #对上映时间进行处理
+        try:
+            year = int(movies[6].replace("/","-").split("-")[0])
+        except:
+            yesr = ""
+        try:
+            month = int(movies[6].replace("/","-").split("-")[1])
+        except:
+            month = ""
+        movies[6] = str(year) + "," + str(month)
+        for m in movies:
+            s += m+","
+        fp_w.write(s[:-1]+"\n")
+    print("OK !!!")
+    fp_w.close()
+#创建存储表
+create table movie_message(
+    id int,
+	title string,
+	daoyan array<string>,
+	bianju array<string>,
+	leixing array<string>,
+	zhuyan array<string>,
+	year int,
+	month int,
+	shichang int,
+	disnum int,
+	score float
+)
+comment "this table about movie's message"
+row format delimited fields terminated by ","
+collection items terminated by '/';
+#加载数据
+load data local inpath "/home/master/mycode/new_movies_load.csv" into table movie_message;
+
+#创建剧情摘要表
+create table movie_summary(
+id int,
+summary string
+)
+comment "this table about movie summary"
+row format delimited fields terminated by "\t";
+#加载数据
+load data local inpath "/home/master/mycode/movie_summary.txt" into table movie_summary;

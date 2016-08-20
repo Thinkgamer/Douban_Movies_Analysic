@@ -1,0 +1,7 @@
+#获取所有的电影类别种类
+#这里查询结果是以类型中所有的元素作为判别标准
+#第二行为指定行分隔符，并使用explode关键字，以类型array中的每一个元素作为关键字进行统计
+insert overwrite local directory "/home/master/mycode/movie_leixing"
+row format delimited fields terminated by "\t"
+select lx,count(*) from movie_message lateral view explode(leixing) leixing as lx group by lx;
+

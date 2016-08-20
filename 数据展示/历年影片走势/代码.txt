@@ -1,0 +1,64 @@
+#-*-coding:utf-8-*-
+
+from matplotlib import  style
+import matplotlib.pyplot as plt
+style.use("ggplot")
+
+fig, ax = plt.subplots()
+def autolabel(rects):
+    for rect in rects:
+        height = rect.get_height()
+        ax.text(rect.get_x()+rect.get_width()/2.0, 1.05*height,'%d'%int(height), ha='center', va='bottom')
+
+#画图电影数目最多的十年
+def show_most_movie_year(most_movie_year):
+    year_most = []    #存放年份
+    number_most = []  #存放数目
+    for year,number in most_movie_year[:10]:
+        year_most.append(year)
+        number_most.append(number)
+    rects_most = plt.bar(range(1,len(year_most)+1),number_most,width=0.4,alpha=0.2,color="g",align="center") #条形图
+    autolabel(rects_most)
+    plt.xlabel(u"年份", color='r')  # 横坐标
+    plt.ylabel(u"对应的电影数目", color='r')  # 纵坐标
+    plt.title(u"电影数目最多的十年")  # 图片名字
+    plt.xticks(range(1, len(year_most) + 1), year_most, fontsize=12)  # x轴加上类别名称
+    plt.yticks(fontsize=10)  # y坐标数字显示大小
+    plt.savefig(u'top10MovieNumber.png')
+    plt.show()  # 显示
+
+#画图最近二十年电影的数目变化
+def show_near_movie_year(near_movie_year):
+    year_near = []  # 存放年份
+    number_near = []  # 存放数目
+    for year, number in near_movie_year[1:31]:
+        year_near.append(year % 100) #只显示年份后两位
+        number_near.append(number)
+    rects_near= plt.plot(range(1, len(year_near) + 1), number_near, alpha=0.2, color="g")  # 条形图
+    # autolabel(rects_near)
+    plt.xlabel(u"年份", color='r')  # 横坐标
+    plt.ylabel(u"对应的电影数目", color='r')  # 纵坐标
+    plt.title(u"最近二十年电影数量走势图")  # 图片名字
+    plt.xticks(range(1, len(year_near) + 1), year_near, fontsize=12)  # x轴加上类别名称
+    plt.yticks(fontsize=10)  # y坐标数字显示大小
+    plt.savefig(u'Near20MovieNumber.png')
+    plt.show()  # 显示
+
+if __name__=="__main__":
+    # 加载数据
+    year = []
+    number = []
+    movie_of_year = {}
+    with open("000000_0.txt", "r") as fp_r:
+        for line in fp_r.readlines():
+            if int(line.strip().split("\t")[0]) > 1900:
+                movie_of_year[int(line.strip().split("\t")[0])] = int(line.strip().split("\t")[1])
+    # 对字典数据进行排序得到，电影数目最多的10个年份和近二十年的电影数量
+    most_movie_year = {}  # 电影数目最多的十年
+    near_movie_year = {}  # 最近二十年电影的数量变化
+
+    most_movie_year = sorted(movie_of_year.items(), key=lambda dic: dic[1], reverse=True)
+    near_movie_year = sorted(movie_of_year.items(), key=lambda dic: dic[0], reverse=True)
+
+    show_most_movie_year(most_movie_year)
+    show_near_movie_year(near_movie_year)

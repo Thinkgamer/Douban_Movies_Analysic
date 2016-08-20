@@ -1,0 +1,4 @@
+#统计各个年份出现的电影数目，并保存结果
+insert overwrite local directory "/home/master/mycode/movie_year" 
+row format delimited fields terminated by "\t"
+select year,count(*) from movie_message group by year;
