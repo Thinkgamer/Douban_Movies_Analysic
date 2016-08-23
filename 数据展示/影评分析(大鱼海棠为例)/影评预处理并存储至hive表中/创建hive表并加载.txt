@@ -1,0 +1,14 @@
+#创建存放影评的hive表
+create table yingping_dayu(
+    id string,
+    title string,
+    uname string,
+    grade string,
+    time string,
+    content string
+)
+comment "this table is about dayuhaitang yingping"
+row format delimited fields terminated by "\t";
+
+#加载数据
+load data local inpath "/home/master/mycode/new_50455678.txt" into table yingping_dayu;

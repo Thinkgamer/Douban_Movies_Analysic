@@ -1,0 +1,4 @@
+#得到time列的种类和数量
+insert overwrite local directory "/home/master/mycoe/yingping_time"
+row format delimited fields terminated by "\t"
+select time,count(*) from yingping_dayu group by time sort by time;
