@@ -1,0 +1,4 @@
+#得到grade列的种类和数量
+insert overwrite local directory "/home/master/mycoe/yingping_grade"
+row format delimited fields terminated by "\t"
+select grade,count(*) from yingping_dayu group by grade;

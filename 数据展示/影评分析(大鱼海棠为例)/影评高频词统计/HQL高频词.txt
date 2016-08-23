@@ -1,0 +1,4 @@
+#加载得到所有影评到hdfs的一个文件中
+insert overwrite directory "/file/douban_movie_data/highWord"
+row format delimited fields terminated by "\t"
+select content from yingpingdayu;

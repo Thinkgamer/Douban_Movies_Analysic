@@ -1,0 +1,14 @@
+从数据表中导出影评内容为“这篇影评可能有剧透”的影评信息
+insert overwrite local directory "/home/master/mycode/jutou"
+row format delimited fields terminated by "\t"
+select * from yingping_dayu where content="这篇影评可能有剧透";
+
+#剧透影评时间
+select time,count(*) from yingping_dayu where content="这篇影评可能有剧透" group by time;
+
+#剧透影评所占比例
+select
+round(sum(case when content="这篇影评可能有剧透" then 1 else 0 end)/count(*),2)
+from yingping_dayu;
+
+#结果0.43
