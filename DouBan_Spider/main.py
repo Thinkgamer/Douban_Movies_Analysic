@@ -116,5 +116,5 @@ if __name__=="__main__":
     # while(spider.manage_class.has_new_url()):
     #     spider.get_one_movie_short_dis(spider.manage_class.get_new_url())
     #     spider.get_one_movie_long_dis(spider.manage_class.get_new_url())
-    # spider.get_one_movie_short_dis("https://movie.douban.com/subject/5045678/")
+    #spider.get_one_movie_short_dis("https://movie.douban.com/subject/5045678/")
     spider.get_one_movie_long_dis("https://movie.douban.com/subject/5045678/")

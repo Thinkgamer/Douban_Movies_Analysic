@@ -123,9 +123,9 @@ class ParaseHtml(object):
     #获取短评或者影评的数目
     def parase_dis_num(self,page):
         try:
-            word = BeautifulSoup(page).find(class_="total").get_text()
+            word = BeautifulSoup(page).find(class_="count").get_text()
             #(共 7648 条) 获取之后是这样的
-            return int(word.split(" ")[1])
+            return int(word[2:-2])
         except Exception as e:
             print("获得电影短评条数异常:",e)
             return 0
@@ -147,10 +147,24 @@ class ParaseHtml(object):
     def parase_one_movie_yingping(self,content):
         new_comment_list = []
         try:
-            comment_list = BeautifulSoup(content).find_all(class_="review-short")
+            comment_list = BeautifulSoup(content).find_all(class_="middle")
             for comment in comment_list:
-                new_comment_list.append(comment.get_text().replace("\n","\t\t"))
-                #print(comment.get_text().replace("\n","\t\t"))
+                comment_dic = {}
+                title = comment.find(class_="title-link").get_text()
+                comment_dic["title"]=title.replace(","," ")
+
+                user = comment.find(property="v:reviewer").get_text()
+                comment_dic["user"] = user.replace(","," ")
+
+                grade = comment.find(property="v:rating")["title"]
+                comment_dic["grade"] = grade
+
+                time = comment.find(property="v:dtreviewed")["content"]
+                comment_dic["time"] = time.replace("-","")
+
+                content = comment.find(class_="short-content").get_text().strip().split("\n")[0]
+                comment_dic["content"] = content.replace(","," ")
+                new_comment_list.append(comment_dic)
         except Exception as e:
             print("解析电影影评异常：", e)
             pass

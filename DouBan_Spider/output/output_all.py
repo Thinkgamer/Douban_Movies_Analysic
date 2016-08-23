@@ -49,9 +49,12 @@ class OutPut(object):
     #将电影影评写入文件
     def output_yingping(self, mid, comment_list):
         for comment in comment_list:
-            try:
-                with open("file_output/yingping/%s .txt" % mid, "a",encoding="utf-8") as fp:
-                    fp.write(mid + "\t" + comment.replace("\n", "") + "\n")
-            except Exception as e:
-                print("写入电影影评异常：", e)
+            if len(comment)!=5:
                 pass
+            else:
+                try:
+                    with open("file_output/yingping/%s .txt" % mid, "a",encoding="utf-8") as fp:
+                        fp.write(mid+"\t"+comment["title"]+"\t"+comment["user"]+"\t"+comment["grade"]+"\t" + comment["time"] + "\t"+comment["content"]+"\n")
+                except Exception as e:
+                    print("写入电影影评异常：", e)
+                    pass
