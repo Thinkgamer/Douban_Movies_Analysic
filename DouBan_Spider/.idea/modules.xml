@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/DouBan_Spider.iml" filepath="$PROJECT_DIR$/.idea/DouBan_Spider.iml" />
       <module fileurl="file://$PROJECT_DIR$/../.idea/Douban_Movies_Analysic.iml" filepath="$PROJECT_DIR$/../.idea/Douban_Movies_Analysic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../HIW/.idea/HIW.iml" filepath="$PROJECT_DIR$/../../HIW/.idea/HIW.iml" />
+      <module fileurl="file://E:/Code/Python/.idea/Python.iml" filepath="E:/Code/Python/.idea/Python.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../BlogBasedDjango/blog/.idea/blog.iml" filepath="$PROJECT_DIR$/../../BlogBasedDjango/blog/.idea/blog.iml" />
       <module fileurl="file://$PROJECT_DIR$/../数据展示/.idea/数据展示.iml" filepath="$PROJECT_DIR$/../数据展示/.idea/数据展示.iml" />
     </modules>

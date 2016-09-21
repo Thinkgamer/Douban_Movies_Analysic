@@ -7,6 +7,11 @@
     <orderEntry type="module" module-name="blog" />
     <orderEntry type="module" module-name="Douban_Movies_Analysic" />
     <orderEntry type="module" module-name="数据展示" />
+    <orderEntry type="module" module-name="Python" />
+    <orderEntry type="module" module-name="Python" />
+    <orderEntry type="module" module-name="HIW" />
+    <orderEntry type="module" module-name="HIW" />
+    <orderEntry type="module" module-name="HIW" />
   </component>
   <component name="TestRunnerService">
     <option name="PROJECT_TEST_RUNNER" value="Unittests" />
