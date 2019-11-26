@@ -11,12 +11,9 @@
 1:数据采集<br/><br/>
   主要是基于豆瓣电影的数据，进行分析，所以首先要爬取相关的电影数据，对应的源代码在DouBan_Spider目录下，主要是采用Python3.4.3 + BeautifulSoup4.4.1 + urllib进行数据采集
 
-2:ETL预处理<br/><br/>
-
-3:数据分析<br/><br/>
-
-4:可视化<br/><br/>
-
+2:ETL预处理<br/>
+3:数据分析<br/>
+4:可视化<br/>
 Email：thinkgamer@163.com<br>
 QQ：1923361654<br>
 WeChat：17600977634<br>
