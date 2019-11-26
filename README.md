@@ -17,7 +17,8 @@
 
 4:可视化<br/><br/>
 
-Email：Thinkagmer_gyt@gmail.com<br>
+Email：thinkgamer@163.com<br>
 QQ：1923361654<br>
-WeChat：gyt13342445911<br>
+WeChat：17600977634<br>
+CSDN：<a href="https://blog.csdn.net/gamer_gyt">https://blog.csdn.net/gamer_gyt</a><br>
 微博：<a href="http://weibo.com/234654758">Thinkgamer<a>
